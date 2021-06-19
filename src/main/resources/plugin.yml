@@ -1,0 +1,33 @@
+name: 100DaysX
+version: 0.1-WIP
+main: me.fiirewiinter.hundreddaysx.Main
+api-version: 1.16
+load: POSTWORLD
+authors: [ FiireWiinter ]
+
+commands:
+  test:
+    description: Test Command
+
+  100dx:
+    description: Opens a GUI for 100DaysX
+
+  100dxprepare:
+    description: Initialize the preperation phase
+    aliases:
+      - prepare
+
+  100dxstart:
+    description: Start 100 days
+    aliases:
+      - start
+
+  100dxstop:
+    description: End 100 days early
+    aliases:
+      - 100stop
+
+  100dxpause:
+    description: Pause/Resume 100 days
+    aliases:
+      - pause

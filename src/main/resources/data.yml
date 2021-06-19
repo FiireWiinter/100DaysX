@@ -1,0 +1,34 @@
+# DO NOT EDIT ANY OF THIS IN HERE!
+# IT IS ALL REQUIRED FOR 100DaysX TO RUN PROPERLY!
+# IF YOU DO DECIDE TO EDIT SOMETHING IN HERE, EXPECT STUFF TO BREAK!
+# YOU HAVE BEEN WARNED
+# - FiireWiinter
+#   - Creator of 100DaysX
+
+# Prepare/start/pause mode
+# THIS WILL DEFINITELY BREAK SHIT
+prepared: false
+started: false
+paused: false
+# The world 100DaysX is operating
+# There can only be one world
+world: 'world'
+# Disable the Whitelist when running the prepare command
+whitelist_disable: false
+# Ability to sleep
+sleeping: true
+# Bossbar for days remaining/passed
+bossbar:
+  # Enable / Disable it
+  enabled: true
+  # Display days remaining if true, else days passed
+  remain: true
+# PVP settings
+pvp:
+  # Currently enabled or disabled while event is running
+  # Used for restarting and stuff
+  enabled: false
+  # Waiting for change
+  waiting: false
+  # Change status on day X
+  change_on_day: -1
