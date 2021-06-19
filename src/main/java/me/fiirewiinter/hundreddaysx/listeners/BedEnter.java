@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package me.fiirewiinter.hundreddaysx.listeners;
 
 import me.fiirewiinter.hundreddaysx.Main;
@@ -15,6 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerBedEnterEvent;
 
 public class BedEnter implements Listener {
+
     private static Main plugin;
 
     public BedEnter(Main plugin) {
@@ -27,7 +23,7 @@ public class BedEnter implements Listener {
         if (Storage.get_bool("prepared") || Storage.get_bool("started") && !Storage.get_bool("sleeping") || Storage.get_bool("paused")) {
             e.setCancelled(true);
             Player p = e.getPlayer();
-            p.sendMessage(Utils.chat("&l&o&cYou are not allowed to sleep! Respawn point has been set tho."));
+            p.sendMessage(Utils.chat("&l&o&cYou are currently not allowed to sleep! Respawn point has been set tho."));
         }
 
     }

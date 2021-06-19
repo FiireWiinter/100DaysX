@@ -1,46 +1,46 @@
 package me.fiirewiinter.hundreddaysx;
 
-import me.fiirewiinter.hundreddaysx.commands.HundredDX;
-import me.fiirewiinter.hundreddaysx.commands.PauseCommand;
-import me.fiirewiinter.hundreddaysx.commands.PrepareCommand;
-import me.fiirewiinter.hundreddaysx.commands.StartCommand;
-import me.fiirewiinter.hundreddaysx.commands.StopCommand;
-import me.fiirewiinter.hundreddaysx.commands.TestCommand;
-import me.fiirewiinter.hundreddaysx.listeners.BedEnter;
-import me.fiirewiinter.hundreddaysx.listeners.InventoryClick;
-import me.fiirewiinter.hundreddaysx.gui.MainGUI;
-import me.fiirewiinter.hundreddaysx.gui.PrepareGUI;
-import me.fiirewiinter.hundreddaysx.utils.Storage;
-import me.fiirewiinter.hundreddaysx.utils.Utils;
+import me.fiirewiinter.hundreddaysx.commands.*;
+import me.fiirewiinter.hundreddaysx.listeners.*;
+import me.fiirewiinter.hundreddaysx.gui.*;
+import me.fiirewiinter.hundreddaysx.utils.*;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Main extends JavaPlugin {
-    public Main() {
-    }
 
     public void onEnable() {
+        // Plugin loading logic
         System.out.println("Loading 100DaysX");
+
+        // Load Utilities that need the plugin
         System.out.println("Loading 100DaysX Utilities");
         new Storage(this);
         new Utils(this);
+
+        // Load the GUIs
         Utils.info("Loading 100DaysX GUIs");
         new MainGUI(this);
         new PrepareGUI(this);
+
+        // Load All Commands
         Utils.info("Loading 100DaysX Commands");
         new HundredDX(this);
         new PrepareCommand(this);
         new StartCommand(this);
         new StopCommand(this);
         new PauseCommand(this);
+
+        // Load all listeners
         Utils.info("Loading 100DaysX Listeners");
         new InventoryClick(this);
         new BedEnter(this);
         new TestCommand(this);
+
+        // Check if we have to enable or disable pvp
         boolean waiting = Storage.get_bool("pvp.waiting");
         boolean pvp = Storage.get_bool("pvp.enabled");
         String world = Storage.get_str("world");
-
         try {
             if (pvp && waiting) {
                 Bukkit.getWorld(world).setPVP(false);
@@ -49,7 +49,6 @@ public final class Main extends JavaPlugin {
                 Bukkit.getWorld(world).setPVP(true);
                 Storage.set("pvp.enabled", true);
             }
-
             Storage.set("pvp.waiting", false);
         } catch (NullPointerException var5) {
             Utils.severe("100DaysX ISSUE DETECTED. WORLD " + Storage.get_str("world") + " NO LONGER EXISTS! STOPPING EVERYTHING!");

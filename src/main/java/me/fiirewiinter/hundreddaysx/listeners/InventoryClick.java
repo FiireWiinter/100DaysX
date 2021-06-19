@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package me.fiirewiinter.hundreddaysx.listeners;
 
 import me.fiirewiinter.hundreddaysx.Main;
@@ -15,6 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
 public class InventoryClick implements Listener {
+
     private Main plugin;
 
     public InventoryClick(Main plugin) {

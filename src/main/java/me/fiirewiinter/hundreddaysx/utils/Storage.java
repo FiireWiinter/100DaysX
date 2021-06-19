@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package me.fiirewiinter.hundreddaysx.utils;
 
 import java.io.File;
@@ -21,7 +16,7 @@ public class Storage {
 
     public Storage(Main plugin) {
         Storage.plugin = plugin;
-        this.saveDefaultConfig();
+        saveDefaultConfig();
     }
 
     public static void reloadConfig() {
@@ -42,18 +37,17 @@ public class Storage {
         if (dataConfig == null) {
             reloadConfig();
         }
-
         return dataConfig;
     }
 
     private static void saveConfig() {
-        if (dataConfig != null && configFile != null) {
-            try {
-                getConfig().save(configFile);
-            } catch (IOException var1) {
-                plugin.getLogger().log(Level.SEVERE, "Could not save config to " + configFile, var1);
-            }
-
+        if (dataConfig == null || configFile == null) {
+            return;
+        }
+        try {
+            getConfig().save(configFile);
+        } catch (IOException var1) {
+            plugin.getLogger().log(Level.SEVERE, "Could not save config to " + configFile, var1);
         }
     }
 
@@ -65,7 +59,6 @@ public class Storage {
         if (!configFile.exists()) {
             plugin.saveResource("data.yml", false);
         }
-
     }
 
     public static String get_str(String key) {
