@@ -14,19 +14,35 @@ public class TestCommand implements CommandExecutor {
     }
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (args.length == 1 && args[0].equals("pvp")) {
-            sender.sendMessage("PVP in world is " + Bukkit.getWorld("world").getPVP());
-            return true;
-
-        } else if (args.length == 3 && args[0].equals("set") && (args[2].equals("true") || args[2].equals("false"))) {
-            Storage.set(args[0], Boolean.parseBoolean(args[1]));
-            sender.sendMessage("YUP! Set " + args[0] + " to " + args[1]);
-            return true;
-
-        } else  if (args.length == 1 && args[0].equals("time")) {
-            Player p = (Player) sender;
-            p.getWorld().setFullTime(0L);
-            return true;
+        switch (args[0]) {
+            case "pvp": {
+                sender.sendMessage("PVP in world is " + Bukkit.getWorld("world").getPVP());
+                break;
+            }
+            case "set": {
+                Storage.set(args[0], Boolean.parseBoolean(args[1]));
+                sender.sendMessage("YUP! Set " + args[1] + " to " + args[2]);
+                break;
+            }
+            case "get": {
+                Object obj = Storage.getConfig().get(args[1]);
+                if (obj == null) {
+                    sender.sendMessage("Key " + args[1] + " doesn't exist lol");
+                    break;
+                }
+                sender.sendMessage("Key: " + args[1]);
+                sender.sendMessage("Value: " + obj);
+                sender.sendMessage("Type: " + obj.getClass());
+                break;
+            }
+            case "time": {
+                Player p = (Player) sender;
+                p.getWorld().setFullTime(0L);
+                break;
+            }
+            default: {
+                break;
+            }
         }
         return false;
     }

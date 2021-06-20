@@ -5,6 +5,9 @@
 # - FiireWiinter
 #   - Creator of 100DaysX
 
+# If the config looses it's comments, it's not really my fault
+# It's the fault of Spigot's handling of config files...
+
 # Prepare/start/pause mode
 # THIS WILL DEFINITELY BREAK SHIT
 prepared: false

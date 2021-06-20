@@ -47,49 +47,56 @@ public class MainGUI {
     }
 
     public static void clicked(Player p, int slot, ItemStack clicked, Inventory inv) {
-        switch(slot) {
-        case 11: {
-            if (Storage.get_bool("sleeping")) {
-                Storage.set("sleeping", false);
-            } else {
-                Storage.set("sleeping", true);
-            }
+        switch (slot) {
+            case 11: {
+                if (Storage.get_bool("sleeping")) {
+                    Storage.set("sleeping", false);
+                } else {
+                    Storage.set("sleeping", true);
+                }
 
-            p.openInventory(GUI(p));
-        }
-        case 14: {}
-            if (Storage.get_bool("pvp.enabled")) {
-                Storage.set("pvp.enabled", false);
-                p.getWorld().setPVP(false);
-            } else {
-                Storage.set("pvp.enabled", true);
-                p.getWorld().setPVP(true);
+                p.openInventory(GUI(p));
             }
-
-            Storage.set("pvp.waiting", false);
-            p.openInventory(GUI(p));
-            break;
-            case 15:
-            if (Storage.get_bool("pvp.waiting")) {
-                p.sendMessage(Utils.chat("&bThis is awkward... I am already waiting 60 seconds to enable/disable PVP. If you want to change it right now, click on the first option."));
-            } else if (Storage.get_bool("pvp.enabled")) {
-                Storage.set("pvp.waiting", true);
-                Utils.titleEveryone("&bDisabling PVP in 60 seconds", "&dYou are almost safe", 10, 100, 10);
-                Bukkit.getScheduler().runTaskLater(plugin, () -> {
-                    Bukkit.getWorld(Storage.get_str("world")).setPVP(false);
+            case 14: {
+                if (Storage.get_bool("pvp.enabled")) {
                     Storage.set("pvp.enabled", false);
-                    Storage.set("pvp.waiting", false);
+                    p.getWorld().setPVP(false);
                     Utils.titleEveryone("&bPVP has been disabled", "&dYou are safe... for now", 10, 100, 10);
-                }, 20L * 60);
-            } else {
-                Storage.set("pvp.waiting", true);
-                Utils.titleEveryone("&bEnabling PVP in 60 seconds", "&c&l&oRun and seek shelter", 10, 100, 10);
-                Bukkit.getScheduler().runTaskLater(plugin, () -> {
-                    Bukkit.getWorld(Storage.get_str("world")).setPVP(true);
+                } else {
                     Storage.set("pvp.enabled", true);
-                    Storage.set("pvp.waiting", false);
+                    p.getWorld().setPVP(true);
                     Utils.titleEveryone("&c&l&oPVP has been enabled", "&c&l&o&4Run...", 10, 100, 10);
-                }, 20L * 60);
+                }
+
+                Storage.set("pvp.waiting", false);
+                p.openInventory(GUI(p));
+                break;
+            }
+            case 15: {
+                if (Storage.get_bool("pvp.waiting")) {
+                    p.sendMessage(Utils.chat("&bThis is awkward... I am already waiting 60 seconds to enable/disable PVP. If you want to change it right now, click on the first option."));
+                } else if (Storage.get_bool("pvp.enabled")) {
+                    Storage.set("pvp.waiting", true);
+                    Utils.titleEveryone("&bDisabling PVP in 60 seconds", "&dYou are almost safe", 10, 100, 10);
+                    Bukkit.getScheduler().runTaskLater(plugin, () -> {
+                        Bukkit.getWorld(Storage.get_str("world")).setPVP(false);
+                        Storage.set("pvp.enabled", false);
+                        Storage.set("pvp.waiting", false);
+                        Utils.titleEveryone("&bPVP has been disabled", "&dYou are safe... for now", 10, 100, 10);
+                    }, 20L * 60);
+                } else {
+                    Storage.set("pvp.waiting", true);
+                    Utils.titleEveryone("&bEnabling PVP in 60 seconds", "&c&l&oRun and seek shelter", 10, 100, 10);
+                    Bukkit.getScheduler().runTaskLater(plugin, () -> {
+                        Bukkit.getWorld(Storage.get_str("world")).setPVP(true);
+                        Storage.set("pvp.enabled", true);
+                        Storage.set("pvp.waiting", false);
+                        Utils.titleEveryone("&c&l&oPVP has been enabled", "&c&l&o&4Run...", 10, 100, 10);
+                    }, 20L * 60);
+                }
+            }
+            case 16: {
+                p.sendMessage("Not implemented");
             }
             default:
                 break;

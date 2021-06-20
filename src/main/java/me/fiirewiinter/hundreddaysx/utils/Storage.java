@@ -30,10 +30,9 @@ public class Storage {
             YamlConfiguration defaultConfig = YamlConfiguration.loadConfiguration(new InputStreamReader(defaultStream));
             dataConfig.setDefaults(defaultConfig);
         }
-
     }
 
-    private static FileConfiguration getConfig() {
+    public static FileConfiguration getConfig() {
         if (dataConfig == null) {
             reloadConfig();
         }
@@ -46,8 +45,8 @@ public class Storage {
         }
         try {
             getConfig().save(configFile);
-        } catch (IOException var1) {
-            plugin.getLogger().log(Level.SEVERE, "Could not save config to " + configFile, var1);
+        } catch (IOException e) {
+            plugin.getLogger().log(Level.SEVERE, "Could not save config to " + configFile, e);
         }
     }
 

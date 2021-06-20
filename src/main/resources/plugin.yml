@@ -1,5 +1,5 @@
 name: 100DaysX
-version: 0.1-WIP
+version: 0.1-DEV
 main: me.fiirewiinter.hundreddaysx.Main
 api-version: 1.16
 load: POSTWORLD
