@@ -54,8 +54,8 @@ public class MainGUI {
                 } else {
                     Storage.set("sleeping", true);
                 }
-
                 p.openInventory(GUI(p));
+                break;
             }
             case 14: {
                 boolean prepared = Storage.get_bool("prepared");
