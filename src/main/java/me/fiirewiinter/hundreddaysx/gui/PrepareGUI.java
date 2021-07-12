@@ -24,34 +24,50 @@ public class PrepareGUI {
         Inventory toReturn = Bukkit.createInventory(null, inv_rows, inventory_name);
         // Disable whitelist option (temp storage)
         if (Storage.get_bool("temp.whitelist")) {
-            Utils.createItem(inv, "barrier", 1, 10, "&l&o&bDisable Whitelist", "&dEnable/Disable the whitelist when starting the prep phase");
-            Utils.createItem(inv, "lime_stained_glass_pane", 1, 19, "&l&o&n&4Disabled on start");
+            Utils.createItem(inv, "barrier", 1, 10, "&l&o&bDisable Whitelist", "&dDisable/Enable the whitelist when starting the prep phase");
+            Utils.createItem(inv, "lime_stained_glass_pane", 1, 19, "&l&o&n&aWhitelist disabled on start");
         } else {
-            Utils.createItem(inv, "barrier", 1, 10, "&l&o&bEnable Whitelist", "&dEnable/Disable the whitelist when starting the prep phase");
-            Utils.createItem(inv, "red_stained_glass_pane", 1, 19, "&l&o&n&4Disabled on start");
+            Utils.createItem(inv, "barrier", 1, 10, "&l&o&bDon't disable Whitelist", "&dDisable/Enable the whitelist when starting the prep phase");
+            Utils.createItem(inv, "red_stained_glass_pane", 1, 19, "&l&o&n&4Whitelist enabled on start");
         }
 
         // Enable pvp on start of 100 Days
         if (Storage.get_bool("pvp.enabled")) {
-            Utils.createItem(inv, "diamond_sword", 1, 12, "&l&o&bDisable PVP on start");;
+            Utils.createItem(inv, "diamond_sword", 1, 12, "&l&o&bDisable PVP on start");
             Utils.createItem(inv, "lime_stained_glass_pane", 1, 21, "&l&o&n&aEnabled on start");
         } else {
-            Utils.createItem(inv, "diamond_sword", 1, 12, "&l&o&bEnable PVP on start");
+            Utils.createItem(inv, "wooden_sword", 1, 12, "&l&o&bEnable PVP on start");
             Utils.createItem(inv, "red_stained_glass_pane", 1, 21, "&l&o&n&4Disabled on start");
         }
+
+        // TP to spawn when entering prep
+        // TODO
+
+        // Start the prep
+        // TODO
 
         toReturn.setContents(inv.getContents());
         return toReturn;
     }
 
     public static void clicked(Player p, int slot, ItemStack clicked, Inventory inv) {
-        String var4;
         switch(slot) {
-        case 1:
-            var4 = "hi";
+        case 10:
+            if (Storage.get_bool("temp.whitelist")) {
+                Storage.set("temp.whitelist", false);
+            } else {
+                Storage.set("temp.whitelist", true);
+            }
+            p.openInventory(GUI(p));
             break;
-        case 2:
-            var4 = "hello";
+        case 12:
+            if (Storage.get_bool("pvp.enabled")) {
+                Storage.set("pvp.enabled", false);
+            } else {
+                Storage.set("pvp.enabled", true);
+            }
+            p.openInventory(GUI(p));
+            break;
         }
 
     }
