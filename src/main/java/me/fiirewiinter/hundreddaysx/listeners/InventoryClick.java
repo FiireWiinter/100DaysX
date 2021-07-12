@@ -26,13 +26,13 @@ public class InventoryClick implements Listener {
             if (e.getCurrentItem() == null) {
                 return;
             }
-
-            if (title.equals(MainGUI.inventory_name)) {
-                MainGUI.clicked((Player)e.getWhoClicked(), e.getSlot(), e.getCurrentItem(), e.getInventory());
-            } else if (title.equals(PrepareGUI.inventory_name)) {
-                PrepareGUI.clicked((Player)e.getWhoClicked(), e.getSlot(), e.getCurrentItem(), e.getInventory());
+            MainGUI.clicked((Player)e.getWhoClicked(), e.getSlot(), e.getCurrentItem(), e.getInventory());
+        } else if (title.equals(PrepareGUI.inventory_name)) {
+            e.setCancelled(true);
+            if (e.getCurrentItem() == null) {
+                return;
             }
+            PrepareGUI.clicked((Player)e.getWhoClicked(), e.getSlot(), e.getCurrentItem(), e.getInventory());
         }
-
     }
 }

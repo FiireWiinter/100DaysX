@@ -16,8 +16,6 @@ paused: false
 # The world 100DaysX is operating
 # There can only be one world
 world: 'world'
-# Disable the Whitelist when running the prepare command
-whitelist_disable: false
 # Ability to sleep
 sleeping: true
 # Bossbar for days remaining/passed
@@ -35,3 +33,5 @@ pvp:
   waiting: false
   # Change status on day X
   change_on_day: -1
+# Temporary data storage
+temp:
