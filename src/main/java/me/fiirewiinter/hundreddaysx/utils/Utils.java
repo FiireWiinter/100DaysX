@@ -19,10 +19,12 @@ public class Utils {
         Utils.plugin = plugin;
     }
 
+    // Format color strings
     public static String chat(String s) {
         return ChatColor.translateAlternateColorCodes('&', s);
     }
 
+    // Logging
     public static void info(String msg) {
         plugin.getLogger().log(Level.INFO, msg);
     }
@@ -35,18 +37,21 @@ public class Utils {
         plugin.getLogger().log(Level.WARNING, msg);
     }
 
+    // Create a item for GUIs
     public static ItemStack createItem(Inventory inv, String material, int amount, int invSlot, String displayName, String... loreString) {
         List<String> lore = new ArrayList();
         ItemStack item = new ItemStack(Material.matchMaterial(material), amount);
         return getItemStack(inv, invSlot, displayName, lore, item, loreString);
     }
 
+    // Create a item for GUIs with special bytes
     public static ItemStack createItemByte(Inventory inv, String material, int byteId, int amount, int invSlot, String displayName, String... loreString) {
         List<String> lore = new ArrayList();
         ItemStack item = new ItemStack(Material.matchMaterial(material), amount, (short)byteId);
         return getItemStack(inv, invSlot, displayName, lore, item, loreString);
     }
 
+    // Add meta and add to inventory
     private static ItemStack getItemStack(Inventory inv, int invSlot, String displayName, List<String> lore, ItemStack item, String[] loreString) {
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(chat(displayName));
@@ -60,11 +65,13 @@ public class Utils {
         return item;
     }
 
+    // Send every player on the server a title
     public static void titleEveryone(String title, String subtitle, int fadeInTicks, int stayTicks, int fadeOutTicks) {
         for (Player player : Bukkit.getOnlinePlayers())
             player.sendTitle(chat(title), chat(subtitle), fadeInTicks, stayTicks, fadeOutTicks);
         }
 
+    // Send a title to only a player
     public static void titlePlayer(Player player, String title, String subtitle, int fadeInSecs, int staySecs, int fadeOutSecs) {
         player.sendTitle(chat(title), chat(subtitle), fadeInSecs * 20, staySecs * 20, fadeOutSecs * 20);
     }

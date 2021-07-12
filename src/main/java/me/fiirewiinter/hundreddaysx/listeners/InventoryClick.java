@@ -21,13 +21,16 @@ public class InventoryClick implements Listener {
     @EventHandler
     public void onClick(InventoryClickEvent e) {
         String title = e.getView().getTitle();
+        // Check if the opened inventory is one of the GUIs
         if (title.equals(MainGUI.inventory_name)) {
+            // Cancel the event, resulting in the item not being removed
             e.setCancelled(true);
             if (e.getCurrentItem() == null) {
                 return;
             }
             MainGUI.clicked((Player)e.getWhoClicked(), e.getSlot(), e.getCurrentItem(), e.getInventory());
         } else if (title.equals(PrepareGUI.inventory_name)) {
+            // Cancel the event, resulting in the item not being removed
             e.setCancelled(true);
             if (e.getCurrentItem() == null) {
                 return;

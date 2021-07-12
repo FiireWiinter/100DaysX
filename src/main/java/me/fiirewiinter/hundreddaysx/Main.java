@@ -11,12 +11,11 @@ public final class Main extends JavaPlugin {
 
     public void onEnable() {
         // Plugin loading logic
-        System.out.println("Loading 100DaysX");
 
         // Load Utilities that need the plugin
-        System.out.println("Loading 100DaysX Utilities");
         new Storage(this);
         new Utils(this);
+        Utils.info("Loading 100DaysX");
 
         // Load the GUIs
         Utils.info("Loading 100DaysX GUIs");

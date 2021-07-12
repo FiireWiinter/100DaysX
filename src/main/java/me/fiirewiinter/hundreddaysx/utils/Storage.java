@@ -19,6 +19,7 @@ public class Storage {
         saveDefaultConfig();
     }
 
+    // Reload the config, in case shit broke
     public static void reloadConfig() {
         if (configFile == null) {
             configFile = new File(plugin.getDataFolder(), "data.yml");
@@ -32,6 +33,7 @@ public class Storage {
         }
     }
 
+    // Retreive the config
     public static FileConfiguration getConfig() {
         if (dataConfig == null) {
             reloadConfig();
@@ -39,6 +41,7 @@ public class Storage {
         return dataConfig;
     }
 
+    // Save the config to a file
     private static void saveConfig() {
         if (dataConfig == null || configFile == null) {
             return;
@@ -50,6 +53,7 @@ public class Storage {
         }
     }
 
+    // If the default config doesn't exist, create it
     private void saveDefaultConfig() {
         if (configFile == null) {
             configFile = new File(plugin.getDataFolder(), "data.yml");
@@ -60,14 +64,17 @@ public class Storage {
         }
     }
 
+    // Fetch a string from the config
     public static String get_str(String key) {
         return getConfig().getString(key);
     }
 
+    // Fetch a boolean from the config
     public static boolean get_bool(String key) {
         return getConfig().getBoolean(key);
     }
 
+    // Set a value in the config
     public static void set(String key, Object val) {
         getConfig().set(key, val);
         saveConfig();

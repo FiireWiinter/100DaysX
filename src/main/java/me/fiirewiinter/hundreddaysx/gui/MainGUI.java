@@ -22,6 +22,8 @@ public class MainGUI {
 
     public static Inventory GUI(Player p) {
         Inventory toReturn = Bukkit.createInventory(null, inv_rows, inventory_name);
+
+        // Sleeping options
         if (Storage.get_bool("sleeping")) {
             Utils.createItem(inv, "lime_stained_glass_pane", 1, 10, "&l&o&n&aCurrently Enabled");
             Utils.createItem(inv, "blue_bed", 1, 11, "&l&o&bDisable Sleeping", "&dAllow/Deny players to sleep");
@@ -30,6 +32,7 @@ public class MainGUI {
             Utils.createItem(inv, "blue_bed", 1, 11, "&l&o&bEnable Sleeping", "&dAllow/Deny players to sleep");
         }
 
+        // PVP options
         if (Storage.get_bool("pvp.enabled")) {
             Utils.createItem(inv, "lime_stained_glass_pane", 1, 13, "&l&o&n&aCurrently Enabled");
             Utils.createItem(inv, "diamond_sword", 1, 14, "&l&o&bDisable PVP Now", "&dSelf Explanatory");
@@ -42,12 +45,19 @@ public class MainGUI {
             Utils.createItem(inv, "wooden_sword", 1, 16, "&l&o&bEnable PVP on day X ", "&dDisable PVP on day X (current day here)", "&dWill open up a pop up");
         }
 
+        // Bossbar options
+        // TODO
+
+        // Pause / Stop "tasks"
+        // TODO
+
         toReturn.setContents(inv.getContents());
         return toReturn;
     }
 
     public static void clicked(Player p, int slot, ItemStack clicked, Inventory inv) {
         switch (slot) {
+            // Toggle Sleeping
             case 11: {
                 if (Storage.get_bool("sleeping")) {
                     Storage.set("sleeping", false);
@@ -57,6 +67,8 @@ public class MainGUI {
                 p.openInventory(GUI(p));
                 break;
             }
+
+            // Instantly switch PVP
             case 14: {
                 boolean prepared = Storage.get_bool("prepared");
                 boolean started = Storage.get_bool("started");
@@ -88,6 +100,8 @@ public class MainGUI {
                 p.openInventory(GUI(p));
                 break;
             }
+
+            // Switch PVP in 60 seconds
             case 15: {
                 if (Storage.get_bool("pvp.waiting")) {
                     p.sendMessage(Utils.chat("&bThis is awkward... I am already waiting 60 seconds to enable/disable PVP. If you want to change it right now, click on the first option."));
@@ -116,11 +130,19 @@ public class MainGUI {
                 }
                 break;
             }
+
+            // Switch PVP on Day X
             case 16: {
-                p.sendMessage("Not implemented");
+                p.sendMessage("Requires the main game \"loop\" to work");
                 break;
             }
-            // add bossbar, pause and cancel here
+
+            // Bossbar options
+            // TODO
+
+            // Pause / Stop "tasks"
+            // TODO
+
             default:
                 break;
         }

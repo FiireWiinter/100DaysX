@@ -22,6 +22,7 @@ public class PrepareGUI {
 
     public static Inventory GUI(Player p) {
         Inventory toReturn = Bukkit.createInventory(null, inv_rows, inventory_name);
+
         // Disable whitelist option (temp storage)
         if (Storage.get_bool("temp.whitelist")) {
             Utils.createItem(inv, "barrier", 1, 10, "&l&o&bDisable Whitelist", "&dDisable/Enable the whitelist when starting the prep phase");
@@ -52,23 +53,27 @@ public class PrepareGUI {
 
     public static void clicked(Player p, int slot, ItemStack clicked, Inventory inv) {
         switch(slot) {
-        case 10:
-            if (Storage.get_bool("temp.whitelist")) {
-                Storage.set("temp.whitelist", false);
-            } else {
-                Storage.set("temp.whitelist", true);
+            // Disable/Don't disable whitelist when starting
+            case 10: {
+                if (Storage.get_bool("temp.whitelist")) {
+                    Storage.set("temp.whitelist", false);
+                } else {
+                    Storage.set("temp.whitelist", true);
+                }
+                p.openInventory(GUI(p));
+                break;
             }
-            p.openInventory(GUI(p));
-            break;
-        case 12:
-            if (Storage.get_bool("pvp.enabled")) {
-                Storage.set("pvp.enabled", false);
-            } else {
-                Storage.set("pvp.enabled", true);
-            }
-            p.openInventory(GUI(p));
-            break;
-        }
 
+            // Enable/Disable PVP on start
+            case 12: {
+                if (Storage.get_bool("pvp.enabled")) {
+                    Storage.set("pvp.enabled", false);
+                } else {
+                    Storage.set("pvp.enabled", true);
+                }
+                p.openInventory(GUI(p));
+                break;
+            }
+        }
     }
 }
