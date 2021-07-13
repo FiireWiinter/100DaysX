@@ -41,8 +41,14 @@ public class PrepareGUI {
             Utils.createItem(inv, "red_stained_glass_pane", 1, 21, "&l&o&n&4Disabled on start");
         }
 
-        // TP to spawn when entering prep
-        // TODO
+        // TP to spawn when entering prep and during prep
+        if (Storage.get_bool("temp.tp_spawn")) {
+            Utils.createItem(inv, "minecart", 1, 14, "&l&o&bTeleport everyone to spawn during prep", "&dThis will TP everyone currently on the server and", "&deveryone who joins during prep to spawn when enabled");
+            Utils.createItem(inv, "lime_stained_glass_pane", 1, 23, "&l&o&n&aTeleport to spawn");
+        } else {
+            Utils.createItem(inv, "minecart", 1, 14, "&l&o&bTeleport everyone to spawn during prep", "&dThis will TP everyone currently on the server and", "&deveryone who joins during prep to spawn when enabled");
+            Utils.createItem(inv, "red_stained_glass_pane", 1, 21, "&l&o&n&4Don't teleport to spawn");
+        }
 
         // Start the prep
         // TODO

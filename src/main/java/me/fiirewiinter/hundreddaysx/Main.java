@@ -13,8 +13,8 @@ public final class Main extends JavaPlugin {
         // Plugin loading logic
 
         // Load Utilities that need the plugin
-        new Storage(this);
         new Utils(this);
+        new Storage(this);
         Utils.info("Loading 100DaysX");
 
         // Load the GUIs
