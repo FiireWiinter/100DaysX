@@ -40,7 +40,7 @@ public class Utils {
     }
 
     public static void debug(String msg) {
-        if (Storage.get_bool("debug")) {
+        if (Storage.getConfig().getBoolean("debug")) {
             Player p = Bukkit.getPlayer(UUID.fromString("a9085607-f473-45f1-90ec-7ad71d697853")); // FiireWiinter
             if (p != null) {
                 p.sendMessage(Utils.chat(msg));
