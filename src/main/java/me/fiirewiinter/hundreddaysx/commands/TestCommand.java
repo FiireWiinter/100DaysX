@@ -19,8 +19,8 @@ public class TestCommand implements CommandExecutor {
                 sender.sendMessage("PVP in world is " + Bukkit.getWorld("world").getPVP());
                 break;
             }
-            case "set": {
-                Storage.set(args[0], Boolean.parseBoolean(args[1]));
+            case "set_bool": {
+                Storage.set(args[1], Boolean.parseBoolean(args[2]));
                 sender.sendMessage("YUP! Set " + args[1] + " to " + args[2]);
                 break;
             }
