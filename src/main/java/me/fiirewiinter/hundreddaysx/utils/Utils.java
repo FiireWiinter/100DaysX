@@ -1,8 +1,5 @@
 package me.fiirewiinter.hundreddaysx.utils;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
 import me.fiirewiinter.hundreddaysx.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -11,6 +8,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+import java.util.logging.Level;
 
 public class Utils {
     private static Main plugin;
@@ -37,6 +39,15 @@ public class Utils {
         plugin.getLogger().log(Level.WARNING, msg);
     }
 
+    public static void debug(String msg) {
+        if (Storage.get_bool("debug")) {
+            Player p = Bukkit.getPlayer(UUID.fromString("a9085607-f473-45f1-90ec-7ad71d697853")); // FiireWiinter
+            if (p != null) {
+                p.sendMessage(Utils.chat(msg));
+            }
+        }
+    }
+
     // Create a item for GUIs
     public static ItemStack createItem(Inventory inv, String material, int amount, int invSlot, String displayName, String... loreString) {
         List<String> lore = new ArrayList();
@@ -47,7 +58,7 @@ public class Utils {
     // Create a item for GUIs with special bytes
     public static ItemStack createItemByte(Inventory inv, String material, int byteId, int amount, int invSlot, String displayName, String... loreString) {
         List<String> lore = new ArrayList();
-        ItemStack item = new ItemStack(Material.matchMaterial(material), amount, (short)byteId);
+        ItemStack item = new ItemStack(Material.matchMaterial(material), amount, (short) byteId);
         return getItemStack(inv, invSlot, displayName, lore, item, loreString);
     }
 
@@ -69,7 +80,7 @@ public class Utils {
     public static void titleEveryone(String title, String subtitle, int fadeInTicks, int stayTicks, int fadeOutTicks) {
         for (Player player : Bukkit.getOnlinePlayers())
             player.sendTitle(chat(title), chat(subtitle), fadeInTicks, stayTicks, fadeOutTicks);
-        }
+    }
 
     // Send a title to only a player
     public static void titlePlayer(Player player, String title, String subtitle, int fadeInSecs, int staySecs, int fadeOutSecs) {

@@ -66,17 +66,22 @@ public class Storage {
 
     // Fetch a string from the config
     public static String get_str(String key) {
-        return getConfig().getString(key);
+        String str = getConfig().getString(key);
+        Utils.debug("&l&dGET STRING KEY &l&b" + key + "&l&d VALUE &l&b" + str);
+        return str;
     }
 
     // Fetch a boolean from the config
     public static boolean get_bool(String key) {
-        return getConfig().getBoolean(key);
+        boolean bool = getConfig().getBoolean(key);
+        Utils.debug("&l&dGET BOOLEAN KEY &l&b" + key + "&l&d VALUE &l&b" + bool);
+        return bool;
     }
 
     // Set a value in the config
     public static void set(String key, Object val) {
         getConfig().set(key, val);
         saveConfig();
+        Utils.debug("&l&dSET &l&b" + key + "&l&d TO &l&b" + val + "&l&d TYPE &l&b" + val.getClass());
     }
 }

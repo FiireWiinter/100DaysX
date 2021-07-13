@@ -8,6 +8,8 @@
 # If the config looses it's comments, it's not really my fault
 # It's the fault of Spigot's handling of config files...
 
+# Debug Mode (this will only return stuff to the Plugin Owner FiireWiinter)
+debug: false
 # Prepare/start/pause mode
 # THIS WILL DEFINITELY BREAK SHIT
 prepared: false

@@ -40,6 +40,15 @@ public class TestCommand implements CommandExecutor {
                 p.getWorld().setFullTime(0L);
                 break;
             }
+            case "debug": {
+                if (Storage.get_bool("debug")) {
+                    Storage.set("debug", false);
+                    sender.sendMessage("Disabled debug");
+                } else {
+                    Storage.set("debug", true);
+                    sender.sendMessage("Enabled debug");
+                }
+            }
             default: {
                 break;
             }
